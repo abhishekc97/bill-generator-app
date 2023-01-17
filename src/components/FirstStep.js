@@ -4,88 +4,150 @@ import { Form, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 function FirstStep(props) {
-    const user = props;
-    const navigate  = useNavigate ();
-    
-    const { register, handleSubmit, formState: { errors } } = useForm({ 
-        defaultValues: {
-            name:user.name,
-            email:user.email,
-            phone:user.phone
-        }
-       });
+	const user = props.user;
+	const navigate = useNavigate();
 
-    function onSubmit(data) {
-        console.log(data);
-        props.updateUser(data);
-        navigate("/second");
-    }
-    
-    return (
-        <Form className="input-form" onSubmit={handleSubmit(onSubmit)}>
-            <div className="col-md-6 offset-md-3">
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm({
+		defaultValues: {
+			name: user.name,
+			email: user.email,
+			phone: user.phone,
+		},
+	});
 
-                <Form.Group controlId="name">
-                    <Form.Label>Name</Form.Label>
-                    <Form.Control 
-                    type="text"
-                    name="name"
-                    placeholder="Enter your name"
-                    autoComplete="off"
-                    {...register("name", { required: 'Name is required.',
-                    pattern: {
-                      value: /^[A-Za-z\s]*$/,
-                      message: 'Name should contain only characters.'
-                    } })}
-                    className={`${errors.name ? 'input-error' : ''}`}
-                    />
-                    {errors.name && (
-                        <p className="errorMsg">{errors.name.message}</p>
-                    )}
+	function onSubmit(data) {
+		console.log("First step data: ", data);
+		props.setUser(data);
+		navigate("/second");
+	}
 
-                </Form.Group>
+	return (
+		<div>
+			<div className="row">
+				<div className="col-8">
+					<div className="your-info">Your Information</div>
+				</div>
+			</div>
+			<Form className="input-form" onSubmit={handleSubmit(onSubmit)}>
+				<div>
+					<div className="information-input">
+						<div className="row">
+							<Form.Group controlId="name">
+								<Form.Label>
+									<span className="information-heading">
+										Name
+									</span>
+								</Form.Label>
+								<div className="col-8">
+									<Form.Control
+										type="text"
+										name="name"
+										placeholder="Enter your name"
+										autoComplete="off"
+										{...register("name", {
+											required: "Name is required.",
+											pattern: {
+												value: /^[A-Za-z\s]*$/,
+												message:
+													"Name should contain only letters, no special characters.",
+											},
+										})}
+										className={`${
+											errors.name ? "input-error" : ""
+										}`}
+									/>
+									{errors.name && (
+										<div className="errorMsg">
+											{errors.name.message}
+										</div>
+									)}
+								</div>
+							</Form.Group>
+						</div>
+					</div>
 
-                <Form.Group controlId="email">
-                    <Form.Label>Email</Form.Label>
-                    <Form.Control type="text"
-                    name="email"
-                    placeholder="Enter your email address"
-                    autoComplete="off"
-                    {...register("email", { required: 'Email is required.',
-                    pattern: {
-                      value: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/,
-                      message: 'Email is not valid.'
-                    } })}
-                    className={`${errors.email ? 'input-error' : ''}`}
-                    />
-                    {errors.email && (
-                        <p className="errorMsg">{errors.email.message}</p>
-                    )}
-                </Form.Group>
+					<div className="information-input">
+						<div className="row">
+							<Form.Group controlId="email">
+								<Form.Label>
+									<span className="information-heading">
+										Email
+									</span>
+								</Form.Label>
+								<div className="col-8">
+									<Form.Control
+										type="text"
+										name="email"
+										placeholder="Enter your email address"
+										autoComplete="off"
+										{...register("email", {
+											required: "Email is required.",
+											pattern: {
+												value: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/,
+												message: "Email is not valid.",
+											},
+										})}
+										className={`${
+											errors.email ? "input-error" : ""
+										}`}
+									/>
+									{errors.email && (
+										<div className="errorMsg">
+											{errors.email.message}
+										</div>
+									)}
+								</div>
+							</Form.Group>
+						</div>
+					</div>
 
-                <Form.Group controlId="phone">
-                    <Form.Label>Phone</Form.Label>
-                    <Form.Control name="phone"
-                    placeholder="Enter your phone mumber"
-                    autoComplete="off"
-                    {...register("phone", { required: 'Phone is required.',
-                    pattern: {
-                      value: /^[0-9]*$/,
-                      message: 'phone is not valid.'
-                    } })}
-                    className={`${errors.phone ? 'input-error' : ''}`}
-                    />
-                    {errors.phone && (
-                        <p className="errorMsg">{errors.phone.message}</p>
-                    )}
-                </Form.Group>
-
-                <Button variant="primary" type="submit">
-                    Next Step
-                </Button>
-            </div>
-        </Form>
-    );
+					<div className="information-input">
+						<div className="row">
+							<Form.Group controlId="phone">
+								<Form.Label>
+									<span className="information-heading">
+										Phone
+									</span>
+								</Form.Label>
+								<div className="col-8">
+									<Form.Control
+										name="phone"
+										placeholder="Enter your phone mumber"
+										autoComplete="off"
+										{...register("phone", {
+											required: "Phone is required.",
+											pattern: {
+												value: /^[0-9]{10}$/,
+												message:
+													"Must be 10 digit number",
+											},
+										})}
+										className={`${
+											errors.phone ? "input-error" : ""
+										}`}
+									/>
+									{errors.phone && (
+										<div className="errorMsg">
+											{errors.phone.message}
+										</div>
+									)}
+								</div>
+							</Form.Group>
+						</div>
+					</div>
+				</div>
+				<div className="submit-buttons">
+					<Button variant="primary" type="submit">
+						Next Step
+					</Button>
+				</div>
+			</Form>
+		</div>
+	);
 }
 
 export default FirstStep;

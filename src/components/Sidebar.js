@@ -3,8 +3,7 @@ import Progress from "./Progress";
 
 function Sidebar() {
     return ( 
-        <div>
-            <h1>Sidebar</h1>
+        <div className="sidebar">
             <Progress />
         </div>
      );

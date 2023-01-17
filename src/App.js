@@ -4,11 +4,15 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import AppRouter from "./router/AppRouter";
 
 function App() {
-		return (
-				<div className="App">
-						<AppRouter />
-				</div>
-		);
+    return (
+        <div>
+            <div className="App">
+                <div className="approuter-container">
+                    <AppRouter />
+                </div>
+            </div>
+        </div>
+    );
 }
 
 export default App;
