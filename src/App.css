@@ -105,12 +105,13 @@ h1 {
 
 .information-input {
     margin-top: 0px;
+    margin-bottom: 5px;
 }
 
 .information-heading {
     color: #04285a;
     font-size: 17px;
-    font-weight: 700;
+    font-weight: 600;
     letter-spacing: 1px;
 }
 
@@ -150,23 +151,26 @@ h1 {
     margin-bottom: 1rem;
 }
 
-.submit-buttons {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin: auto;
+.submit-button-container-1 {
+    margin-top: 100px;
 }
 
-.final-page {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100vh;
-    width: 520px;
+.submit-button-container-3 {
+    margin-top: 100px;
+}
+
+.next-step-button {
+    background-color: #001127;
+    border: 2px solid #001127;
+    color: #fff;
+    margin-left: 15px;
 }
 
 .third-page-heading {
-    position: relative;
+    color: #04285A;
+    font-size: 23px;
+    font-weight: 700;
+    margin-bottom: 20px;
 }
 
 .details-container {
@@ -183,11 +187,20 @@ h1 {
 }
 
 .bill-particulars {
-    font-weight: 600;
-    font-size: large;
+    font-weight: 500;
+    font-size: 17px;
+    color: #04285A;
+    letter-spacing: 1px;
+    margin-top: 10px;
+    width: 500px;
 }
 
 .bill-particulars-value {
     font-weight: 400;
-    font-size: small;
+    font-size: 15px;
+    color: #04285A;
+    letter-spacing: 1px;
+    margin-left: 0;
+    margin-top: 10px;
+
 }

@@ -140,8 +140,8 @@ function FirstStep(props) {
 						</div>
 					</div>
 				</div>
-				<div className="submit-buttons">
-					<Button variant="primary" type="submit">
+				<div className="submit-button-container-2">
+					<Button className="next-step-button" variant="primary" type="submit">
 						Next Step
 					</Button>
 				</div>
