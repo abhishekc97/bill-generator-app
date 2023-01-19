@@ -10,7 +10,8 @@ function AppRouter() {
         name: "",
         email: "",
         phone: "",
-        //, planName:'', price:''
+        planName:'',
+        price:''
     });
 
     const [planType, setPlanType] = useState({
@@ -60,15 +61,16 @@ function AppRouter() {
                             <Route
                                 path="/"
                                 element={
-                                    <FirstStep user={user} setUser={setUser} />
+                                    <FirstStep user={user} updateUser={updateUser} />  
+                                    // setUser={setUser}
                                 }
                             />
                             <Route
                                 path="/second"
                                 element={
                                     <SecondStep
-                                        user={user}
-                                        setPlanType={setPlanType}
+                                        user={user} updateUser={updateUser}
+                                        // setPlanType={setPlanType}
                                     />
                                 }
                             />

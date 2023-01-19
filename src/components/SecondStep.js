@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./SecondStep.css";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { Toggle } from "./Toggle"
 
 function SecondStep(props) {
     const navigate = useNavigate();
@@ -41,7 +42,10 @@ function SecondStep(props) {
             return "box inactive";
         }
     }
-
+    const logState = state => {
+        console.log("Toggled:", state)
+    }
+    
     let error = false;
     const [errorMessage, setErrorMessage] = useState("");
 
@@ -57,7 +61,8 @@ function SecondStep(props) {
                 price: options.activePlan.price,
             };
             console.log(data);
-            props.setPlanType(data);
+            // props.setPlanType(data);
+            props.updateUser(data);
             navigate("/final");
         } else {
             setErrorMessage("You must select a plan before proceeding");
@@ -109,6 +114,17 @@ function SecondStep(props) {
 
                     <div> {error ? errorMessage : ""} </div>
                 </div>
+                <div className="row mt-4">
+                    <div className="toggle-button-box">
+                        <Toggle
+                        labelLeft="Monthly"
+                        labelRight="Yearly"
+                        toggled={true}
+                        onClick={logState}
+                        />
+                    </div>
+                </div>
+
                 <div className="submit-button-container-2">
                     <div className="row">
                         <div className="col-4">

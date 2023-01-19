@@ -21,7 +21,8 @@ function FirstStep(props) {
 
 	function onSubmit(data) {
 		console.log("First step data: ", data);
-		props.setUser(data);
+		// props.setUser(data);
+		props.updateUser(data);
 		navigate("/second");
 	}
 

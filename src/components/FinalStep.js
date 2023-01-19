@@ -7,29 +7,34 @@ function FinalStep(props) {
     const navigate = useNavigate();
 
     const userData = props.user;
-    const planType = props.planType;
+    // const planType = props.planType;
+    const [grandTotal, setGrandTotal] = useState('');
 
     const [billingDetails, setBillingDetails] = useState({
         details: [
+            // "name": userData.email;
+            
             { name: "Name", data: userData.name },
             { name: "Email", data: userData.email },
             { name: "Phone", data: userData.phone },
-            { name: "Plan Name", data: planType.planName },
-            { name: "Price", data: planType.price },
+            { name: "Plan Name", data: userData.planName },
+            { name: "Price", data: userData.price },
         ],
     });
 
-    // var value = "Price";
-    // for (var key in billingDetails.details) {
-    //     if (billingDetails[key] === value) console.log(key);
-    // }
-    // if (billingDetails) {
-    //     let grandTotal = billingDetails.details;
-    //     console.log("grand total:", grandTotal);
-    // }
+    function getGrandTotal() {
+        let grandTotal = '';
+        for(var index in billingDetails.details ) {
+            if(index == 4) {
+                grandTotal = billingDetails.details[index].data;
+                console.log("grandtotal", grandTotal);
+            }
+        }
+        setGrandTotal(grandTotal);
+    }
 
     useEffect(() => {
-        console.log("billing details", billingDetails);
+        getGrandTotal();
     }, [billingDetails]);
 
     function goBack() {
@@ -49,14 +54,15 @@ function FinalStep(props) {
                 <div className="row">
                     <div className="row">
                         {billingDetails.details.map((element, index) => (
-                            <div className="row">
-                                {/* <div key={index} className={plan-ite} > */}
-                                <div key={index} className="col-2">
+                            <div key={index} className="row">
+                                <div className="col-2">
+                                {/* <div key={index} className="col-6">  duplicate key warning in console*/}
                                     <span className="bill-particulars">
                                         {element.name}{" "}
                                     </span>
                                 </div>
-                                <div key={index} className="col-6">
+                                <div className="col-6">
+                                {/* <div key={index} className="col-6"> */}
                                     <span className="bill-particulars-value">
                                         : &nbsp; &nbsp; {element.data}
                                     </span>{" "}
@@ -75,6 +81,7 @@ function FinalStep(props) {
                         <span className="bill-particulars">Grand Total</span>
                     </div>
                     <div className="col-6">
+                        <span className="bill-particulars-value">&nbsp; &nbsp;{grandTotal}</span>
                         {/* <span className="bill-particulars-value">{billingDetails.details.map((element) => (element))}</span> */}
                     </div>
                 </div>
